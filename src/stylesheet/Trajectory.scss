@@ -1,0 +1,69 @@
+.Trajectory{
+    height: 100vh;
+    background-color: $light_gray;
+    padding: 20px 20px 0 20px;
+    display: flex;
+    flex-direction: column;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+
+    .working{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .header{
+
+        &__title{
+            font-size: 24px;
+            gap: 12px;
+
+            span{
+                font-size: 30px;
+            }
+        }
+    }
+
+    .content{
+
+
+        &__stats{
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            &__title{
+                font-size: 18px;
+                color: black;
+            }
+
+            .stats{
+                display: grid;
+                grid-template-columns: repeat(4,1fr);
+                gap: 30px;
+
+                .stat{
+                    background-color: white;
+                    padding: 30px;
+                    border-radius: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    &__icon{
+                        background-color: $main_color;
+                        width: 30px;
+                        height: 30px;
+                        padding: 5px;
+                        border-radius: 20px;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+
+}

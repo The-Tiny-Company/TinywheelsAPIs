@@ -1,0 +1,50 @@
+@import "./Variables.scss";
+@import "./Dashboard.scss";
+@import "./Driver.scss";
+@import "./SideBar.scss";
+@import "./Trajectory.scss";
+@import "./Vehicule.scss";
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 20px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+body{
+    scroll-behavior: smooth;
+    font-family: $font_family;
+}
+
+.app{
+  display: flex;
+  height: 100vh;
+  
+}
+
+.content{
+  flex: 5;
+}

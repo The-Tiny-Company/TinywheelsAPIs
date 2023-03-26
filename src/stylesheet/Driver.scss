@@ -1,0 +1,91 @@
+.Driver{
+    height: 100vh;
+    overflow-y: scroll;
+    background-color: $light_gray;
+    display: flex;
+    flex-direction: column;
+
+
+    .Header{
+        display: flex;
+        flex-direction: column;
+        background-color: $main_color;
+        width: 100%;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        position: sticky;
+        top: 0;
+        z-index: 99;
+        padding: 10px 20px;
+        
+
+        &__Alis{
+            
+            .Header__title{
+                font-size: 50px;
+                color: white;
+            }
+
+            .Header__desc{
+                font-size: 14px;
+                color: black;
+            }
+        }
+
+        &__func{
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+
+            &__search{
+                display: flex;
+                gap: 10px;
+                width: 100%;
+
+                .SearchInput{
+                    width: 30%;
+                }
+
+                .ClearAll{
+                    font-size: 16px;
+                    padding: 20px 15px;
+                    display: flex;
+                    align-items: center;
+                }
+            }
+
+            .AddDriver{
+                margin-left: auto;
+                background-color: white;
+                display: flex;
+                padding: 20px 15px;
+                font-size: 16px;
+                gap: 20px;
+                align-items: center;
+                border-radius: 20px;
+                border: 1px solid $main_color;
+                cursor: pointer;
+
+
+                .PlusIcon{
+                    transform: rotate(0deg);
+                    transition: all .21s ease-in;
+                }
+
+                &:hover .PlusIcon{
+                    transform: rotate(45deg);
+                }
+
+                &:hover{
+                    color: white;
+                    background-color: transparent;
+                    border: 1px solid white;
+                }
+            }
+        }
+    }
+
+    .table{
+        margin: 15px 10px;
+    }
+}
