@@ -14,8 +14,8 @@ public class Address {
     private String suite;
     private String city;
     private String zipcode;
-    private double lat;
-    private double longt;
+    private String lat;
+    private String longt;
 
 
 
@@ -49,16 +49,16 @@ public class Address {
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
-    public double getLat() {
+    public String getLat() {
         return lat;
     }
-    public void setLat(double lat) {
+    public void setLat(String lat) {
         this.lat = lat;
     }
-    public double getLongt() {
+    public String getLongt() {
         return longt;
     }
-    public void setLongt(double longt) {
+    public void setLongt(String longt) {
         this.longt = longt;
     }
     

@@ -2,7 +2,6 @@ package com.TinyWheels.AgencyBackEnd.model;
 
 import java.sql.Date;
 
-import jakarta.persistence.Access;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,7 +30,7 @@ public class Driver{
     private String phone;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
-    private Access address;
+    private Address address;
     @Enumerated(EnumType.STRING)
     private LicenseType licenseType;
     @Temporal(TemporalType.DATE)
@@ -44,7 +43,9 @@ public class Driver{
     private Status status;
     @Column(columnDefinition = "MEDIUMBLOB",nullable = true)
     private String img;
-    
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="vehicule_id")
+    private Vehicule vehicule;    
 
 
     public LicenseType getLicenseType() {
@@ -107,13 +108,19 @@ public class Driver{
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    public Access getAddress() {
+    public Address getAddress() {
         return address;
     }
-    public void setAddress(Access address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
-
+    public Vehicule getVehicule() {
+        return vehicule;
+    }
+    public void setVehicule(Vehicule vehicule) {
+        this.vehicule = vehicule;
+    }
+    
 
     
 

@@ -75,7 +75,8 @@ public class DriverController {
             _driver.setRating(driver.getRating());
             _driver.setStarDate(driver.getStarDate());
             _driver.setStatus(driver.getStatus());
-            //_driver.setAddress(driver.getAddress());
+            _driver.setAddress(driver.getAddress());
+            _driver.setVehicule(driver.getVehicule());
             return new ResponseEntity<Driver>(repository.save(_driver), HttpStatus.OK);
         }else{
             return new ResponseEntity<Driver>(HttpStatus.NOT_FOUND);

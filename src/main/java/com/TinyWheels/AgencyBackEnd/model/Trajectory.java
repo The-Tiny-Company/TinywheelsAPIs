@@ -3,6 +3,7 @@ package com.TinyWheels.AgencyBackEnd.model;
 
 import java.sql.Time;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -10,6 +11,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
@@ -22,9 +25,11 @@ public class Trajectory {
     private TrajectoryType trajectoryType;
     @Column(nullable = false)
     private String Client; // String For now Tangado Class dial Ecole and Parent 
-    @Column(nullable = false)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "start_address_id")
     private Address startAddress;
-    @Column(nullable = false)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "end_address_id")
     private Address endAddress;
     @Temporal(TemporalType.TIME)
     private Time startTime;
