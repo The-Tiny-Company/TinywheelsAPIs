@@ -5,6 +5,8 @@ import Dashboard from "./pages/Dashboard"
 import Driver from "./pages/Driver"
 import Trajectory from "./pages/Trajectory"
 import Vehicule from "./pages/Vehicule"
+import AddDriver from './pages/AddDriver';
+import AddVehicule from './pages/AddVehicule';
 
 
 function App() {
@@ -17,8 +19,10 @@ function App() {
         <Routes>
           <Route path='/' element={<Dashboard />}/>
           <Route path='/driver' element={<Driver />}/>
+          <Route path='/driver/add' element={<AddDriver />}/>
           <Route path='/trajectory' element={<Trajectory />}/>
           <Route path='/vehicule' element={<Vehicule />}/>
+          <Route path='/vehicule/add' element={<AddVehicule />}/>
         </Routes>
       
       </div>

@@ -3,7 +3,7 @@ import { PersonCheckFill,Cash,CarFrontFill } from 'react-bootstrap-icons'
 import Working from '../assets/working.jpg'
 
 function Dashboard() {
-
+  
   
   return (
     <div className='Trajectory'>

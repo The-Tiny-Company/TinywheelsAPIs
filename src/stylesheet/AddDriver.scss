@@ -1,0 +1,92 @@
+.AddForm{
+    background-color: lighten($color: $main_color, $amount: 20%);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    form{
+        background-color: white;
+        padding: 40px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .submitBtn{
+            background-color: $main_color;
+            border: 1px solid white;
+            padding: 10px 0;
+            border-radius: 20px;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
+            transition: all .22s ease-in-out;
+
+            &:hover{
+                background-color: transparent;
+                border: 1px solid $main_color;
+                color: $main_color;
+            }
+
+        }
+
+        .form_row{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            &_2pack{
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .label{
+                font-size: 14px;
+
+                span{
+                    font-size: 20px;
+                    color: red;
+                }
+            }
+
+            .form_input{
+                display: flex;
+                flex-direction: column;
+                width: 81%;
+
+                input{
+                    border: 1px solid $main_color;
+                    width: 100%;
+                    border-radius: 5px;
+                    height: 10px;
+                    padding: 20px;
+
+                    &::placeholder{
+                        color: $dark_gray;
+                        font-size: 14px;
+                        font-family: $font_family;
+                    }
+                }
+
+                select{
+                    width: 30%;
+                    padding: 10px;
+                    border-radius: 10px;
+                    border: 1px solid $main_color;
+                }
+
+                .input-error{
+                    border-color: red;
+                }
+
+                .error-mssg{
+                    color: red;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}

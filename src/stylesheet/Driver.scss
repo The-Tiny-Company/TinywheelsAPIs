@@ -89,3 +89,31 @@
         margin: 15px 10px;
     }
 }
+
+
+.status{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: lowercase;
+    color: white;
+    .dispo{
+        background-color: lighten($color: $done, $amount: 20%);
+        width: max-content;
+        padding: 5px 10px;
+        font-family: $font_family;
+        border-radius: 20px;
+        border: 1px solid $done;
+        cursor: pointer;
+    }
+
+    .ndispo{
+        background-color: lighten($color: $canceled, $amount: 20%);
+        width: max-content;
+        padding: 5px 10px;
+        font-family: $font_family;
+        border-radius: 20px;
+        border: 1px solid $canceled;
+        cursor: pointer;
+    }
+}
