@@ -3,10 +3,10 @@ import axios from 'axios'
 import {Table , Popconfirm ,Button,Space,Form,Input} from 'antd'
 import {isEmpty} from 'lodash';
 import { useState,useEffect } from 'react';
-import { Trash3,PencilSquare,XLg,CloudDownload,PlusLg,BusFrontFill,CarFrontFill } from 'react-bootstrap-icons';
+import { Trash3,PencilSquare,XLg,CloudDownload,PlusLg} from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 
-function Datagrid({title}) {
+function DriverDataGrid({title}) {
 
     const [gridData,setGridData] = useState([])
     const [loading,setLoading] = useState(false)
@@ -18,7 +18,7 @@ function Datagrid({title}) {
 
   const loadVehiculeData=async()=>{
       setLoading(true)
-      const res = await axios.get("http://localhost:8080/api/v1/vehicules")
+      const res = await axios.get("http://localhost:8080/api/v1/drivers")
       setGridData(res.data)
       console.log(res.data)
       setLoading(false)
@@ -37,13 +37,13 @@ function Datagrid({title}) {
   },[])
 
   //this gonna be changed with the axios DELETE Method 
-  const handleDelete=async(val)=>{
-    await axios.delete("http://localhost:8080/api/v1/vehicules/"+val.id)
+  const handleDelete=async (val)=>{
+    await axios.delete("http://localhost:8080/api/v1/drivers/"+val.id)
     loadVehiculeData()
   }
 
 
-
+  
   const modifiedData = gridData.map(({body,...item})=>({
     ...item,
     key : item.id,
@@ -75,7 +75,8 @@ function Datagrid({title}) {
       {
         const item = newData[index]
         newData.splice(index,1,{...item,...row})
-        await axios.put("http://localhost:8080/api/v1/vehicules/"+key,newData[1]).then(res=>console.log(res)).catch(err=>console.log(err))
+        console.log(newData[1])
+        await axios.put("http://localhost:8080/api/v1/drivers/"+key,newData[1]).then(res=>console.log(res.data)).catch(err=>console.log(err))
         setGridData(newData)
         setEditingKey("")
       }
@@ -123,22 +124,61 @@ function Datagrid({title}) {
       dataIndex : "id",
     },
     {
-      title : "Matricule",
-      dataIndex : "matricule",
+      title : "CNE",
+      dataIndex : "cne",
       align : "center",
       editable : true,
-      sorter : (a,b)=>a.matricule.length - b.matricule.length,
-      sortOrder : sortedInfo.columnKey === 'matricule' && sortedInfo.order,
+      sorter : (a,b)=>a.cne.length - b.cne.length,
+      sortOrder : sortedInfo.columnKey === 'cne' && sortedInfo.order,
     
     },
     {
-    title : "Production Date",
-    dataIndex : "productiondate",
+    title : "Nom",
+    dataIndex : "fullname",
     align : "center",
     editable : true,
-    sorter : (a,b)=>a.productiondate.length - b.productiondate.length,
-    sortOrder : sortedInfo.columnKey === 'productiondate' && sortedInfo.order,
+    sorter : (a,b)=>a.fullname.length - b.fullname.length,
+    sortOrder : sortedInfo.columnKey === 'fullname' && sortedInfo.order,
     },
+    {
+    title : "Phone",
+    dataIndex : "phone",
+    align : "center",
+    editable : true,
+    sorter : (a,b)=>a.phone.length - b.phone.length,
+    sortOrder : sortedInfo.columnKey === 'phone' && sortedInfo.order,
+    },
+    {
+        title : "Rating",
+        dataIndex : "rating",
+        align : "center",
+        editable : true,
+        sorter : (a,b)=>a.rating.length - b.rating.length,
+        sortOrder : sortedInfo.columnKey === 'rating' && sortedInfo.order,
+    },
+    {
+        title : "Date Embauche",
+        dataIndex : "starDate",
+        align : "center",
+        editable : true,
+        sorter : (a,b)=>a.starDate.length - b.starDate.length,
+        sortOrder : sortedInfo.columnKey === 'starDate' && sortedInfo.order,
+    },
+    {
+        title : "Address",
+        dataIndex : "address",
+        align : "center",
+        editable : true,
+        sorter : (a,b)=>a.address.length - b.address.length,
+        sortOrder : sortedInfo.columnKey === 'address' && sortedInfo.order,
+        render : (_,record)=>{
+          return(
+            <>
+              {record.address.street + " "+record.address.suite+" "+record.address.city+" "+record.address.zipcode}
+            </>
+          )
+        }
+        },
     {
     title : "Status",
     dataIndex : "status",
@@ -156,21 +196,6 @@ function Datagrid({title}) {
       )
     }
     },
-    {
-      title : "Vehicule Type",
-      dataIndex : "vehiculeType",
-      align : "center",
-      editable : true,
-      sorter : (a,b)=>a.vehiculeType.length - b.vehiculeType.length,
-      sortOrder : sortedInfo.columnKey === 'vehiculeType' && sortedInfo.order,
-      render : (_,record)=>{
-        return(
-          <>
-          {record.vehiculeType==="CAR" ? <CarFrontFill style={{fontSize : 24}} /> : <BusFrontFill style={{fontSize : 24}}/>}  
-          </>
-        )
-      }
-      },
     {
       title : "Actions",
       dataIndex : "actions",
@@ -356,9 +381,9 @@ function Datagrid({title}) {
   const globalSearch=()=>{
     filteredData = modifiedData.filter((value)=>{
       return (
-        value.matricule.toLowerCase().includes(searchText.toLowerCase()) || 
-        value.status.toLowerCase().includes(searchText.toLowerCase()) ||
-        value.vehiculeType.toLowerCase().includes(searchText.toLowerCase()) 
+        value.cne.toLowerCase().includes(searchText.toLowerCase()) || 
+        value.fullname.toLowerCase().includes(searchText.toLowerCase()) ||
+        value.phone.toLowerCase().includes(searchText.toLowerCase()) 
       )
     })
     setGridData(filteredData)
@@ -368,10 +393,10 @@ function Datagrid({title}) {
         <div className='Header' >
           <div className="Header__Alis">
           <div className="Header__title">
-            {title}
+            Driver
           </div>
           <div className="Header__desc">
-            Manage Your {title}'s Here
+            Manage Your Driver's Here
           </div>
           </div>
         <div className="Header__func">
@@ -386,7 +411,7 @@ function Datagrid({title}) {
         />
         <Button onClick={handleClear} className='ClearAll'>Clear All</Button>
         </div>
-        <Button className='AddDriver' ><Link to='/vehicule/add'> Add {title}</Link><PlusLg className='PlusIcon'/></Button>
+        <Button className='AddDriver' ><Link to='/driver/add'>Add Driver </Link><PlusLg className='PlusIcon'/></Button>
         </div>
       </div>
       <div className="table">
@@ -410,4 +435,4 @@ function Datagrid({title}) {
   )
 }
 
-export default Datagrid
+export default DriverDataGrid

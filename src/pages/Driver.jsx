@@ -1,5 +1,5 @@
 import React  from 'react'
-import Datagrid from '../components/Datagrid'
+import DriverDataGrid from '../components/DriverDataGrid'
 
 
 
@@ -9,7 +9,7 @@ function Driver() {
 
   return (
     <div className='Driver'>
-      <Datagrid title={"Driver"}/>
+      <DriverDataGrid title={"Driver"}/>
     </div>
   )
     

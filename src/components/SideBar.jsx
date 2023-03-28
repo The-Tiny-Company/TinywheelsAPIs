@@ -12,10 +12,10 @@ function SideBar() {
 
   return (
     <div className='SideBar'>
-        <div class="logo">
+        <div className="logo">
                 <img src={Logo} alt="Logo Picture" />
             </div>
-            <div class="SideBar_list">
+            <div className="SideBar_list">
                 <ul>
                     <li className={selected ==="Dashboard" ? "selected" : ""} onClick={()=>{setSelected("Dashboard")}}><Grid /><Link to={"/"}>Dashboard</Link></li>
                     <li className={selected ==="Vehicule" ? "selected" : ""} onClick={()=>{setSelected("Vehicule")}}><BusFront /><Link to={"/vehicule"}>Vehicule</Link></li>
@@ -25,15 +25,15 @@ function SideBar() {
                 </ul>
             </div>
 
-            <div class="user">
-                <div class="user_image">
+            <div className="user">
+                <div className="user_image">
                     <img src={User} alt="User Picture" />    
                 </div>
-                <div class="user__name">
-                    <div class="name">
+                <div className="user__name">
+                    <div className="name">
                         Admin 
                     </div>
-                    <div class="logout">
+                    <div className="logout">
                         Logout
                     </div>
                 </div>
