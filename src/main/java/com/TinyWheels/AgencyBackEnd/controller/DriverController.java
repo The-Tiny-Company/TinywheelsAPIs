@@ -83,8 +83,8 @@ public class DriverController {
         }
     }
 
-    @DeleteMapping("/drivers/{idDR}")
-    public ResponseEntity<HttpStatus> deleteDriver(@PathVariable("idDR") int id){
+    @DeleteMapping("/drivers/{ido}")
+    public ResponseEntity<HttpStatus> deleteDriver(@PathVariable("ido") int id){
         try{
             repository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
