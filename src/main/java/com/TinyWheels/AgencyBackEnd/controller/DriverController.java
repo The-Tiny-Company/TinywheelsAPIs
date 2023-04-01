@@ -41,6 +41,24 @@ public class DriverController {
         }   
     }
 
+
+
+    @GetMapping("/drivers/my")
+    public ResponseEntity<List<Driver>> getmyDrivers(){
+        try{
+            List<Driver> drivers = repository.findAll();
+            if(drivers.isEmpty()){
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            return new ResponseEntity<>(drivers,HttpStatus.OK);
+        }
+        catch(Exception e)
+        {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/drivers/{id}")
     public ResponseEntity<Driver> getDriverById(@PathVariable("id") int driverId){
         Optional<Driver> driverData = repository.findById(driverId);
@@ -83,8 +101,8 @@ public class DriverController {
         }
     }
 
-    @DeleteMapping("/drivers/{ido}")
-    public ResponseEntity<HttpStatus> deleteDriver(@PathVariable("ido") int id){
+    @DeleteMapping("/drivers/{id}")
+    public ResponseEntity<HttpStatus> deleteDriver(@PathVariable("id") int id){
         try{
             repository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
