@@ -41,24 +41,6 @@ public class DriverController {
         }   
     }
 
-
-
-    @GetMapping("/drivers/my")
-    public ResponseEntity<List<Driver>> getMyDrivers(){
-        try{
-            List<Driver> drivers = repository.findAll();
-            if(drivers.isEmpty()){
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-
-            return new ResponseEntity<>(drivers,HttpStatus.OK);
-        }
-        catch(Exception e)
-        {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
     @GetMapping("/drivers/{id}")
     public ResponseEntity<Driver> getDriverById(@PathVariable("id") int driverId){
         Optional<Driver> driverData = repository.findById(driverId);
