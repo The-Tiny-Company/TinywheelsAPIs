@@ -101,6 +101,7 @@ public class DriverController {
         }
     }
 
+
     @DeleteMapping("/drivers/{id}")
     public ResponseEntity<HttpStatus> deleteDriver(@PathVariable("id") int id){
         try{
