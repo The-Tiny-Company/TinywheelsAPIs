@@ -44,7 +44,7 @@ public class DriverController {
 
 
     @GetMapping("/drivers/my")
-    public ResponseEntity<List<Driver>> getmyDrivers(){
+    public ResponseEntity<List<Driver>> getMyDrivers(){
         try{
             List<Driver> drivers = repository.findAll();
             if(drivers.isEmpty()){
