@@ -34,6 +34,10 @@ public class ClientAccount {
         return id;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
