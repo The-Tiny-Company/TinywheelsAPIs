@@ -1,4 +1,4 @@
-package com.TinyWheels.AgencyBackEnd.model;
+package com.tinycompany.tinywheels.agency.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package com.TinyWheels.AgencyBackEnd.model;
+package com.tinycompany.tinywheels.agency.models;
 
 public enum TrajectoryType {
     DONE,PENDING,CANCELED
