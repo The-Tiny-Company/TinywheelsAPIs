@@ -7,6 +7,8 @@ import Trajectory from "./pages/Trajectory"
 import Vehicule from "./pages/Vehicule"
 import AddDriver from './pages/AddDriver';
 import AddVehicule from './pages/AddVehicule';
+import ParcAuto from './pages/ParcAuto';
+import Convention from './pages/Convention';
 
 
 function App() {
@@ -23,6 +25,8 @@ function App() {
           <Route path='/trajectory' element={<Trajectory />}/>
           <Route path='/vehicule' element={<Vehicule />}/>
           <Route path='/vehicule/add' element={<AddVehicule />}/>
+          <Route path='/parcauto' element={<ParcAuto />} />
+          <Route path='/convention' element={<Convention />} /> 
         </Routes>
       
       </div>
