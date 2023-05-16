@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { useState } from 'react'
 import { VehiculeSchema } from '../schema/vehiculeyup'
+import { Alert, } from '@mui/material'
 
 
 
@@ -18,7 +19,7 @@ import { VehiculeSchema } from '../schema/vehiculeyup'
 // private VehiculeType vehiculeType;
 function AddVehicule() {
  
-
+  const [alert,setAlert]=useState(false)
   const {values,errors,touched,isSubmitting,handleBlur,handleChange,handleSubmit} = useFormik({
     initialValues:{
       matricule:"",
@@ -32,10 +33,17 @@ function AddVehicule() {
         productiondate :values.productiondate,
         vehiculeType : values.vehiculetype,
         status : "DISPONIBLE"
-      }).then(res=>console.log(res.data))
+      }).then(alertTimer)
       .catch(err=>console.log(err))
     }
   })
+
+  const alertTimer=()=>{
+    setAlert(true)
+    setTimeout(()=>{
+      setAlert(false)
+    },3000)
+  }
 
   return (
     <div className='AddForm'>
@@ -88,6 +96,11 @@ function AddVehicule() {
         </div>
         <input disabled={isSubmitting}  type="submit" className='submitBtn' value="Submit" />
       </form>
+      <div className="alert" style={!alert ? {opacity : 0 ,    transform: "translateX(0%)"} : {opacity : 1 ,     transform: "translateX(-5%)"}}>
+        <Alert severity='success'>
+            Vehicule Added Successfully
+        </Alert>
+      </div>
     </div>
   )
 }

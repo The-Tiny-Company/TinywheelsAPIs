@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {useFormik} from 'formik'
 import { DriverShcema } from '../schema/driveryup'
 import axios from 'axios'
+import { Alert } from '@mui/material'
 
 
 //cne
@@ -16,7 +17,7 @@ import axios from 'axios'
 //img == null For now
 //vehicule = null
 function AddDriver() {
-  
+  const [alert,setAlert]=useState(false)
   const {values,errors,touched,isSubmitting,handleBlur,handleChange,handleSubmit} = useFormik({
     initialValues:{
       cne:"",
@@ -50,10 +51,17 @@ function AddDriver() {
             zipcode : values.zipcode,
             city : values.city
           }
-        }).then(res=>console.log(res.data))
+        }).then(alertTimer)
         .catch(err=>console.log(err))
     }
   })
+
+  const alertTimer=()=>{
+    setAlert(true)
+    setTimeout(()=>{
+      setAlert(false)
+    },3000)
+  }
 
 
   return (
@@ -192,6 +200,11 @@ function AddDriver() {
         </div>
         <input disabled={isSubmitting}  type="submit" className='submitBtn' value="Submit" />
       </form>
+      <div className="alert" style={!alert ? {opacity : 0 ,    transform: "translateX(0%)"} : {opacity : 1 ,     transform: "translateX(-5%)"}}>
+        <Alert severity='success'>
+            Driver Added Successfully
+        </Alert>
+      </div>
     </div>
   )
 }
