@@ -33,6 +33,8 @@ public class Trajectory {
     private Address endAddress;
     @Temporal(TemporalType.TIME)
     private Time startTime;
+
+    
     public int getId() {
         return id;
     }

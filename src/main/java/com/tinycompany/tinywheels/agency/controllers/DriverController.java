@@ -1,6 +1,5 @@
 package com.tinycompany.tinywheels.agency.controllers;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -19,8 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1")
 public class DriverController {
@@ -28,45 +26,43 @@ public class DriverController {
     DriverRepository repository;
 
     @GetMapping("/drivers")
-    public ResponseEntity<List<Driver>> getAllDrivers(){
-        try{
+    public ResponseEntity<List<Driver>> getAllDrivers() {
+        try {
             List<Driver> drivers = repository.findAll();
-            if(drivers.isEmpty()){
+            if (drivers.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
 
-            return new ResponseEntity<>(drivers,HttpStatus.OK);
-        }
-        catch(Exception e)
-        {
+            return new ResponseEntity<>(drivers, HttpStatus.OK);
+        } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }   
+        }
     }
 
     @GetMapping("/drivers/{id}")
-    public ResponseEntity<Driver> getDriverById(@PathVariable("id") int driverId){
+    public ResponseEntity<Driver> getDriverById(@PathVariable("id") int driverId) {
         Optional<Driver> driverData = repository.findById(driverId);
-        if(driverData.isPresent()){
-            return new ResponseEntity<>(driverData.get(),HttpStatus.OK);
+        if (driverData.isPresent()) {
+            return new ResponseEntity<>(driverData.get(), HttpStatus.OK);
         }
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/drivers")
-    public ResponseEntity<Driver> createDriver(@RequestBody Driver driver){
-        try{
+    public ResponseEntity<Driver> createDriver(@RequestBody Driver driver) {
+        try {
             Driver _driver = repository.save(driver);
             return new ResponseEntity<Driver>(_driver, HttpStatus.OK);
-        }catch(Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PutMapping("/drivers/{id}")
-    public ResponseEntity<Driver> updateDriver(@PathVariable("id") int id,@RequestBody Driver driver){
+    public ResponseEntity<Driver> updateDriver(@PathVariable("id") int id, @RequestBody Driver driver) {
         Optional<Driver> driverData = repository.findById(id);
 
-        if(driverData.isPresent()){
+        if (driverData.isPresent()) {
             Driver _driver = driverData.get();
             _driver.setCne(driver.getCne());
             _driver.setEmail(driver.getEmail());
@@ -80,17 +76,17 @@ public class DriverController {
             _driver.setAddress(driver.getAddress());
             _driver.setVehicule(driver.getVehicule());
             return new ResponseEntity<Driver>(repository.save(_driver), HttpStatus.OK);
-        }else{
+        } else {
             return new ResponseEntity<Driver>(HttpStatus.NOT_FOUND);
         }
     }
 
     @DeleteMapping("/drivers/{id}")
-    public ResponseEntity<HttpStatus> deleteDriver(@PathVariable("id") int id){
-        try{
+    public ResponseEntity<HttpStatus> deleteDriver(@PathVariable("id") int id) {
+        try {
             repository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
-        }catch(Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
